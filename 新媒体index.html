@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新媒体账号运营方案 - 可编辑落地页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(120deg, #1d4ed8 0%, #2563eb 100%);
+            color: white;
+            padding: 30px 40px;
+            position: relative;
+            border-bottom: 1px solid #d1d5db;
+        }
+        
+        .watermark {
+            position: absolute;
+            opacity: 0.03;
+            font-size: 160px;
+            font-weight: bold;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            pointer-events: none;
+            font-family: 'Arial Black', sans-serif;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: #ffd700;
+        }
+        
+        .logo-text h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        
+        .logo-text .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .doc-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .header-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .doc-info {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .info-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .doc-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f97316;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+        }
+        
+        .btn:hover {
+            background: #ea580c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(249, 115, 22, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-save {
+            background: #10b981;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-save:hover {
+            background: #059669;
+            box-shadow: 0 6px 15px rgba(16, 185, 129, 0.4);
+        }
+        
+        /* Document Content */
+        .document-content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 1.6rem;
+            color: #1e40af;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dbeafe;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title i {
+            font-size: 1.8rem;
+            color: #3b82f6;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 25px 0;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+        
+        th {
+            background: #3b82f6;
+            color: white;
+            text-align: left;
+            padding: 16px 20px;
+            font-weight: 600;
+            position: sticky;
+            left: 0;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .brand-header {
+            background: #dbeafe;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            background: rgba(249, 115, 22, 0.1);
+            font-weight: 600;
+            color: #ea580c;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: #e2e8f0;
+        }
+        
+        .badge-blue {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .badge-orange {
+            background: #ffedd5;
+            color: #ea580c;
+        }
+        
+        .badge-green {
+            background: #dcfce7;
+            color: #15803d;
+        }
+        
+        /* Editable styles */
+        [contenteditable="true"] {
+            padding: 8px 12px;
+            border-radius: 4px;
+            min-height: 20px;
+            transition: all 0.3s ease;
+            border: 1px dashed transparent;
+        }
+        
+        [contenteditable="true"]:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+            border: 1px dashed #3b82f6;
+        }
+        
+        [contenteditable="true"]:focus {
+            outline: none;
+            background-color: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+        }
+        
+        .editable-highlight {
+            animation: highlight 2s ease;
+        }
+        
+        @keyframes highlight {
+            0% { background-color: rgba(255, 230, 0, 0.7); }
+            100% { background-color: transparent; }
+        }
+        
+        /* Action Bar */
+        .action-bar {
+            display: flex;
+            gap: 15px;
+            padding: 20px 40px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            justify-content: center;
+        }
+        
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .footer-logo i {
+            color: #60a5fa;
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .doc-meta {
+                align-items: flex-start;
+            }
+            
+            .header-bottom {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            
+            .doc-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .document-content {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .action-bar {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="watermark">OPERATION PLAN</div>
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="logo-text">
+                        <h1>新媒体账号运营方案</h1>
+                        <div class="subtitle">数据驱动 · 精准运营 · 效果保障</div>
+                    </div>
+                </div>
+                <div class="doc-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>交付日期: <span id="currentDate">2025年7月8日</span></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>方案版本: v3.1</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-user"></i>
+                        <span>首席运营官: 张振</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-bottom">
+                <div class="doc-info">
+                    <div class="info-item">
+                        <span class="info-label">执行周期</span>
+                        <span class="info-value">3个月（分阶段见效）</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">适用账号</span>
+                        <span class="info-value">5个品牌账号</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">核心指标</span>
+                        <span class="info-value">GMV增长 + 粉丝增长</span>
+                    </div>
+                </div>
+                
+                <div class="doc-actions">
+                    <button class="btn" id="downloadWord">
+                        <i class="fas fa-file-word"></i> 下载Word文档
+                    </button>
+                    <button class="btn" id="downloadExcel">
+                        <i class="fas fa-file-excel"></i> 下载Excel表格
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <div class="document-content">
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-paw"></i>
+                    PLAYERLIFESTYLE 宠物玩具
+                </h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>项目</th>
+                                <th>运营策略</th>
+                                <th>内容规划</th>
+                                <th>量化指标</th>
+                                <th>执行保障</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="brand-header">
+                                <td colspan="5">核心需求：大陆代运营搭建品牌体系，拓展电商销售</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">品牌定位</td>
+                                <td contenteditable="true">宠物生活方式专家，聚焦"人宠情感互动"场景</td>
+                                <td contenteditable="true">建立萌宠演员库（5只网红犬猫）</td>
+                                <td contenteditable="true">品牌认知度提升40%</td>
+                                <td contenteditable="true">与现有代理分工：我方主攻大陆内容</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">内容输出</td>
+                                <td contenteditable="true">
+                                    <div class="badge badge-blue">小红书</div> 玩具测评/宠物互动挑战赛 (4篇/周)<br>
+                                    <div class="badge badge-blue">抖音</div> 15s创意短视频 (3条/周)<br>
+                                    <div class="badge badge-blue">微信视频号</div> 宠物护理知识直播 (1场/周)
+                                </td>
+                                <td contenteditable="true">脚本公式：痛点→玩具测试→优惠弹窗</td>
+                                <td contenteditable="true">单条视频播放量50万+</td>
+                                <td contenteditable="true">建立"产品-内容-仓储"数据中台</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">电商转化</td>
+                                <td contenteditable="true">小红书笔记嵌入淘口令组件，植入专属优惠码</td>
+                                <td contenteditable="true">每周2篇拆箱测评笔记</td>
+                                <td contenteditable="true">淘宝店引流转化率提升15%</td>
+                                <td contenteditable="true">实时监控ROI，避免流量浪费</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">副品牌孵化</td>
+                                <td contenteditable="true">针对低价市场开发"PET PLAY"子线</td>
+                                <td contenteditable="true">开发平价玩具盲盒套装（单价39.9元）</td>
+                                <td contenteditable="true">首月GMV突破25万元</td>
+                                <td contenteditable="true">KOC分销计划：寄样50人→笔记带货→佣金15%</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">风险控制</td>
+                                <td colspan="4" contenteditable="true">
+                                    <span class="highlight">若未开通淘宝客权限，将损失27%引流效率 → 建议3日内决策</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-building"></i>
+                    THE POINT 共享办公空间
+                </h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>项目</th>
+                                <th>运营策略</th>
+                                <th>内容规划</th>
+                                <th>量化指标</th>
+                                <th>执行保障</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="brand-header">
+                                <td colspan="5">核心需求：品牌搭建+引流询单，开发企业出海业务</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">账号矩阵</td>
+                                <td contenteditable="true">
+                                    主账号@the point空间：办公场景展示<br>
+                                    子账号@香港创业指南：企业注册/出海干货
+                                </td>
+                                <td contenteditable="true">
+                                    "24小时共享办公体验"沉浸式Vlog<br>
+                                    "香港公司注册避坑指南"信息图+专家访谈
+                                </td>
+                                <td contenteditable="true">账号矩阵粉丝总量10万+</td>
+                                <td contenteditable="true">双账号协同运营策略</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">产品包装</td>
+                                <td contenteditable="true">空间服务产品化、标准化</td>
+                                <td contenteditable="true">开发"3小时体验套餐"（原价298→首单9.9元）</td>
+                                <td contenteditable="true">套餐转化率20%</td>
+                                <td contenteditable="true">拍摄专业服务流程图解</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">引流转化</td>
+                                <td contenteditable="true">内容引导私域，客服及时响应</td>
+                                <td contenteditable="true">
+                                    私信预约送咖啡券<br>
+                                    添加企业微信获取《香港税务指南》
+                                </td>
+                                <td contenteditable="true">微信客服响应时效<5分钟</td>
+                                <td contenteditable="true">预埋12个常见问题应答模板</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">员工培训</td>
+                                <td contenteditable="true">提升询单转化能力</td>
+                                <td contenteditable="true">《询单转化手册》含21个实际案例解析</td>
+                                <td contenteditable="true">首月有效询单≥80个</td>
+                                <td contenteditable="true">每周1次话术优化workshop</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">数据承诺</td>
+                                <td colspan="4" contenteditable="true">
+                                    <span class="highlight">首月未达成80个有效询单 → 退还50%服务费</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-theater-masks"></i>
+                    尚梯娱乐
+                </h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>项目</th>
+                                <th>运营策略</th>
+                                <th>内容规划</th>
+                                <th>量化指标</th>
+                                <th>执行保障</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="brand-header">
+                                <td colspan="5">核心需求：降低封号风险+流量变现+员工培训</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">账号安全</td>
+                                <td contenteditable="true">
+                                    注册企业蓝V账号<br>
+                                    建立敏感词库+AI内容预审
+                                </td>
+                                <td contenteditable="true">代办抖音/小红书企业认证</td>
+                                <td contenteditable="true">封号概率下降80%</td>
+                                <td contenteditable="true">部署AI审核工具（含粤语谐音库）</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">内容优化</td>
+                                <td contenteditable="true">热点改编+合规优化</td>
+                                <td contenteditable="true">每周3条剧情化短视频</td>
+                                <td contenteditable="true">内容合规率100%</td>
+                                <td contenteditable="true">制作《红线手册》含6大封号案例</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">历史素材利用</td>
+                                <td contenteditable="true">二次剪辑经典内容</td>
+                                <td contenteditable="true">创建#经典回顾话题，发布未公开花絮</td>
+                                <td contenteditable="true">经典内容播放量≥50万/条</td>
+                                <td contenteditable="true">专业剪辑团队支持</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">苍井空IP变现</td>
+                                <td contenteditable="true">分层级变现设计</td>
+                                <td contenteditable="true">
+                                    大众层：39元电子签名照<br>
+                                    铁粉层：1999元见面会资格
+                                </td>
+                                <td contenteditable="true">IP相关GMV超50万</td>
+                                <td contenteditable="true">私域抽签+限量发售策略</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">员工培训</td>
+                                <td contenteditable="true">提升自主运营能力</td>
+                                <td contenteditable="true">线下2天集训+月度线上答疑</td>
+                                <td contenteditable="true">员工可独立完成合规内容生产</td>
+                                <td contenteditable="true">培训后实操测试与资格认证</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-palette"></i>
+                    艺术类账号专项方案
+                </h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>账号</th>
+                                <th>定位策略</th>
+                                <th>内容规划</th>
+                                <th>变现路径</th>
+                                <th>量化目标</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td contenteditable="true"><strong>形品艺术</strong><br>艺术品销售</td>
+                                <td contenteditable="true">艺术IP打造+线上线下引流</td>
+                                <td contenteditable="true">
+                                    艺术家纪录片（小红书）<br>
+                                    "解密名画"系列（抖音）<br>
+                                    线下沙龙直播（视频号）
+                                </td>
+                                <td contenteditable="true">
+                                    小红书店铺：限量版画（≤2000元）<br>
+                                    高净值客户群→拍卖预展邀请
+                                </td>
+                                <td contenteditable="true">
+                                    3个月小红书粉丝3万+<br>
+                                    店铺转化率5%<br>
+                                    沙龙报名转化率30%
+                                </td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true"><strong>大话新才</strong><br>水墨画培训</td>
+                                <td contenteditable="true">个人IP打造+课程销售</td>
+                                <td contenteditable="true">
+                                    爆款公式：毛笔劈纸→3分钟教学→领工具包<br>
+                                    直播笔触特写+写生教学
+                                </td>
+                                <td contenteditable="true">
+                                    1元体验课→99元写生课→1999元师承班<br>
+                                    私域笔会高端圈
+                                </td>
+                                <td contenteditable="true">
+                                    直播场均观看破万<br>
+                                    课程转化率10%<br>
+                                    首月课程GMV超20万
+                                </td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true"><strong>谢晓莹</strong><br>粤剧文化</td>
+                                <td contenteditable="true">文化IP打造+演出导流</td>
+                                <td contenteditable="true">
+                                    "粤剧妆造挑战"（抖音）<br>
+                                    "百年戏服探秘"（小红书）
+                                </td>
+                                <td contenteditable="true">
+                                    线上打赏→线下演出导流<br>
+                                    粤剧文化周边产品
+                                </td>
+                                <td contenteditable="true">
+                                    3个月粉丝增长5万+<br>
+                                    内容互动率提升300%<br>
+                                    演出门票销售提升25%
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-lock"></i>
+                    数据保障体系
+                </h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>保障模块</th>
+                                <th>具体措施</th>
+                                <th>KPI指标</th>
+                                <th>达标线</th>
+                                <th>未达标补偿</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td contenteditable="true">过程可视化</td>
+                                <td contenteditable="true">每日作战仪表盘（实时监控发布/流量/转化数据）</td>
+                                <td contenteditable="true">数据透明度</td>
+                                <td contenteditable="true">100%指标可追踪</td>
+                                <td contenteditable="true">免费数据培训</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">增长保障</td>
+                                <td contenteditable="true">精准投放+内容优化+热点追踪</td>
+                                <td contenteditable="true">粉丝增长率</td>
+                                <td contenteditable="true">≥15%/月</td>
+                                <td contenteditable="true">免费延长1个月服务</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">转化保障</td>
+                                <td contenteditable="true">转化路径优化+A/B测试</td>
+                                <td contenteditable="true">引流转化率</td>
+                                <td contenteditable="true">≥行业均值2倍</td>
+                                <td contenteditable="true">退还该模块费用</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">安全保障</td>
+                                <td contenteditable="true">AI内容审核+人工复核</td>
+                                <td contenteditable="true">内容违规次数</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">支付账号重建费</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">GMV保障</td>
+                                <td contenteditable="true">爆款打造+分销体系</td>
+                                <td contenteditable="true">GMV达成率</td>
+                                <td contenteditable="true">≥合同约定90%</td>
+                                <td contenteditable="true">差额部分双倍补偿</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-bar">
+            <button class="btn btn-save" id="saveEdits">
+                <i class="fas fa-save"></i> 保存当前编辑
+            </button>
+            <button class="btn" id="resetEdits">
+                <i class="fas fa-undo"></i> 重置为初始方案
+            </button>
+            <button class="btn" id="downloadPDF">
+                <i class="fas fa-file-pdf"></i> 导出为PDF
+            </button>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-logo">
+                <i class="fas fa-rocket"></i>
+                <span>深度运营解决方案</span>
+            </div>
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>contact@deepoperate.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+86 400 888 8888</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>上海市浦东新区张江高科技园区</span>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>合同模板下载</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-database"></i>
+                    <span>数据报告库</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-headset"></i>
+                    <span>7×24小时客服支持</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 设置当前日期
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('zh-CN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        // 添加编辑高亮效果
+        document.querySelectorAll('[contenteditable="true"]').forEach(editable => {
+            editable.addEventListener('input', function() {
+                this.classList.add('editable-highlight');
+                setTimeout(() => {
+                    this.classList.remove('editable-highlight');
+                }, 2000);
+            });
+        });
+        
+        // 保存编辑内容到本地存储
+        document.getElementById('saveEdits').addEventListener('click', function() {
+            const editables = document.querySelectorAll('[contenteditable="true"]');
+            const savedContent = {};
+            
+            editables.forEach((editable, index) => {
+                savedContent[`editable-${index}`] = editable.innerHTML;
+            });
+            
+            localStorage.setItem('savedPlan', JSON.stringify(savedContent));
+            
+            // 显示保存成功提示
+            this.innerHTML = '<i class="fas fa-check"></i> 内容已保存！';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-save"></i> 保存当前编辑';
+            }, 2000);
+        });
+        
+        // 加载保存的内容
+        function loadSavedContent() {
+            const savedContent = localStorage.getItem('savedPlan');
+            if (savedContent) {
+                const contentObj = JSON.parse(savedContent);
+                const editables = document.querySelectorAll('[contenteditable="true"]');
+                
+                editables.forEach((editable, index) => {
+                    if (contentObj[`editable-${index}`]) {
+                        editable.innerHTML = contentObj[`editable-${index}`];
+                    }
+                });
+            }
+        }
+        
+        // 重置为初始内容
+        document.getElementById('resetEdits').addEventListener('click', function() {
+            if (confirm('确定要重置所有内容到初始状态吗？')) {
+                localStorage.removeItem('savedPlan');
+                location.reload();
+            }
+        });
+        
+        // 模拟文件下载功能
+        document.getElementById('downloadWord').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-file-word"></i> 下载Word文档';
+                alert('Word文档生成完成！在实际应用中，这里会提供真实文件下载。');
+            }, 1500);
+        });
+        
+        document.getElementById('downloadExcel').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-file-excel"></i> 下载Excel表格';
+                alert('Excel表格生成完成！在实际应用中，这里会提供真实文件下载。');
+            }, 1500);
+        });
+        
+        document.getElementById('downloadPDF').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-file-pdf"></i> 导出为PDF';
+                alert('PDF文件生成完成！在实际应用中，这里会提供真实文件下载。');
+            }, 1500);
+        });
+        
+        // 添加交互效果 - 行高亮
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#f1f5f9';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('brand-header')) {
+                    this.style.backgroundColor = '';
+                }
+            });
+        });
+        
+        // 添加品牌标题点击效果
+        document.querySelectorAll('.brand-header').forEach(header => {
+            header.addEventListener('click', function() {
+                this.classList.toggle('highlight');
+            });
+        });
+        
+        // 页面加载时加载保存的内容
+        window.addEventListener('DOMContentLoaded', loadSavedContent);
+    </script>
+</body>
+</html>
